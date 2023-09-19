@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  db:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes: 
+    - ./db:/root/db/ 
+  web:  
+    image: josuesauca/prueba
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "8000:8000"
+    volumes:
+      - ./:/code
+    depends_on:
+      - db 
+    
